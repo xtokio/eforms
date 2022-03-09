@@ -2,5 +2,6 @@
 /lib/
 /bin/
 /.shards/
+/db/eforms.db
 *.dwarf
 .editorconfig
