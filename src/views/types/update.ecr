@@ -1,0 +1,24 @@
+<h3>Settings > <a href="#" data-load-link="load" data-link="/types">Forms</a> > Update</h3>
+
+<label for="txt_type" style="display: block; margin-bottom: 5px;">Form name</label>
+<input type="text" id="txt_type" placeholder="Form name" value="<%= type[0].type %>" style="margin-bottom: 10px;">
+
+<label for="txt_description" style="display: block; margin-bottom: 5px;">Form description</label>
+<input type="text" placeholder="Form description" id="txt_description" value="<%= type[0].description %>" style="margin-bottom: 10px;">
+
+<label for="cmb_active" style="display: block; margin-bottom: 5px;">Active</label>
+<select id="cmb_active">
+  <option value="1" <% if type[0].active == 1 %> selected <% end %>>On</option>
+  <option value="0" <% if type[0].active == 0 %> selected <% end %>>Off</option>
+</select>
+
+<label for="txt_template" style="display: block; margin-bottom: 5px;">Form template</label>
+<textarea id="txt_template" style="height:400px; width:840px ;border:1px solid #fff;"><%= type[0].template %></textarea>
+
+<div style="text-align: right;">
+    <button id="btn_show_preview" class="btn btn-primary" style="width: 120px;">Show preview</button> 
+    <button id="btn_update" class="btn btn-primary" data-id="<%= type[0].id %>" data-type="<%= type[0].type %>" data-description="<%= type[0].description %>" data-addons="<%= type[0].addons %>" style="width: 120px;">Update</button>
+</div>
+<br>
+<div id="div_show_preview" style="position: relative;"></div>
+<script src="/assets/js/pages/types.js"></script>

@@ -1,0 +1,154 @@
+<label style="position: relative; left: -40px; font-size: 1.5rem; font-weight: 600; color: var(--active-color); width: 140px; text-align: center;">
+    <span style="box-shadow: 0 4px 8px 0 rgb(0 0 0 / 1%), 0 6px 20px 0 rgb(0 0 0 / 3%); text-align: center; padding: 10px; border-radius: 5px;"><%= form[0].id %></span>
+</label>
+<div style="display: flex; gap: 1.5rem; margin-top: 22px;">
+    <div style="max-width: 12rem; width: 100%;">        
+        <label style="position: relative; top: 15px; font-size: 18px;">Assigned to</label>
+        <div id="div_users" style="margin-top: 20px;" data-users="<%= form[0].assigned_to %>">
+            <% if form[0].assigned_to.to_s != "" %>
+                <% form[0].assigned_to.to_s.split(",").each do |assigned_to|%>
+                    <span class="btn" style="position:relative; display: block; background-color: #e1ebfb; cursor: initial;">
+                        <%= assigned_to %>
+                        <% if form[0].assigned_to.to_s.split(",").size > 1 %>
+                            <a href="#" class="remove_user" data-id="<%= form[0].id %>" data-user="<%= assigned_to %>" style="position: absolute; right: 10px; font-size: 14px;">x</a>
+                        <% end %>
+                    </span>
+                <% end %>
+            <% end %>
+            <nav class="dropdown" role="navigation">
+                <ul>
+                  <li>
+                    <a id="lnk_add_user" href="#" aria-haspopup="true" class="btn btn-primary" style="position:relative; display:block; color: white;">
+                        Assign to user
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down collapse__link" viewBox="0 0 16 16" style="position: relative; top: 2px; color: var(--theme-bg-color); float: right;">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </a>
+                    <ul class="dropdown submenu" aria-label="submenu">
+                        <% users.each do |user| %>
+                        <li><a href="#" class="add_user" data-id="<%= form[0].id %>" data-user="<%= user.name %>"><%= user.name %></a></li>
+                        <% end %>
+                    </ul>
+                  </li>
+                </ul>
+            </nav>
+
+            <label style="position: relative; top: 15px; font-size: 18px;">Status</label>
+            <span class="btn" style="position:relative; display: block; background-color: #e1ebfb; cursor: initial; margin-top: 20px;"><%= form[0].status_description %></span>
+            <nav class="dropdown" role="navigation">
+                <ul>
+                  <li>
+                    <a id="lnk_send_to" href="#" aria-haspopup="true" class="btn btn-primary" style="position:relative; display:block; color: white;">
+                        Change status
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down collapse__link" viewBox="0 0 16 16" style="position: relative; top: 2px; color: var(--theme-bg-color); float: right;">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </a>
+                    <ul class="dropdown submenu" aria-label="submenu">
+                    <% status.each do |record| %>
+                        <li><a href="#" class="send_to" data-id="<%= form[0].id %>" data-status="<%= record.id %>"><%= record.description %></a></li>
+                    <% end %>
+                    </ul>
+                  </li>
+                </ul>
+            </nav>
+
+            <label style="position: relative; top: 15px; font-size: 18px;">Attachments</label>
+            <% attachments.each do |attachment| %>
+            <span class="btn" style="position:relative; display: block; background-color: #e1ebfb; cursor: initial; margin-top: 20px;">
+                <a href="/assets/forms/uploads/<%= attachment.attachment %>" target="_blank">
+                    <% case attachment.extension
+                         when "jpg", "jpeg", "png", "gif" %>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-image" viewBox="0 0 16 16">
+                            <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                            <path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5V14zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4z"/>
+                        </svg>
+                        <% when "xls", "xlsx" %>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                            <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z"/>
+                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                        </svg>
+                        <% when "doc", "docx" %>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-word" viewBox="0 0 16 16">
+                            <path d="M5.485 6.879a.5.5 0 1 0-.97.242l1.5 6a.5.5 0 0 0 .967.01L8 9.402l1.018 3.73a.5.5 0 0 0 .967-.01l1.5-6a.5.5 0 0 0-.97-.242l-1.036 4.144-.997-3.655a.5.5 0 0 0-.964 0l-.997 3.655L5.485 6.88z"/>
+                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                        </svg>
+                        <% when "ppt", "pptx" %>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-ppt" viewBox="0 0 16 16">
+                            <path d="M7 5.5a1 1 0 0 0-1 1V13a.5.5 0 0 0 1 0v-2h1.188a2.75 2.75 0 0 0 0-5.5H7zM8.188 10H7V6.5h1.188a1.75 1.75 0 1 1 0 3.5z"/>
+                            <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                        </svg>
+                        <% when "pdf" %>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
+                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                            <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"/>
+                        </svg>
+                        <% else %>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                            <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                        </svg>
+                    <% end %>
+                    <%= attachment.filename %>
+                </a>
+            </span>
+            <% end %>
+            <a href="#" id="btn_attachment_upload" class="btn btn-primary" style="position:relative; display:block; color: white;">
+                Add attachment
+            </a>
+            <input id="btn_attachment_upload_file" type="file" data-id="<%= form[0].id %>" style="display: none;"/>
+
+        </div>
+    </div>
+    <div style="flex-grow: 1;">
+        <div style="text-align: right; margin-bottom: -20px;">
+            <input type="text" id="txt_form_number" placeholder="Form number" value="<%= form[0].form %>" style="width: 135px;">
+        </div>
+        <%= form[0].template %>
+        <div style="display: flex; justify-content: flex-end; margin-top: 25px;">
+            <a href="#" id="btn_save" class="btn btn-primary" data-id="<%= form[0].id %>">Save changes</a>
+        </div>
+        
+
+        <div class="mb-1">
+                  
+            <div id="comment_container">
+                <% comments.each do |comment| %>
+                <div class="media media-comment">                  
+                    <div class="media-body">
+                        <div class="media-comment-text">
+                            <h4 style="font-size: 0.85rem; font-weight: 400; margin: 0; padding-bottom: 10px;">
+                                <%= comment.name %>
+                            </h4>
+                            <p>
+                                <%= comment.comment %>
+                            </p>
+                            <span class="text-sm text-date">
+                                <%= Time.parse!(comment.created_at.to_s, "%Y-%m-%d %H:%M:%S %z").to_local.to_s("%Y-%m-%d %H:%M:%S %P") %>
+                            </span>                        
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+
+            </div>
+            
+            <div class="media media-comment">
+                <div class="media-body">
+                    <div class="field media-comment-text">
+                        <textarea id="txt_comment" placeholder="Write your comment" name="comment"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex; justify-content: flex-end; margin-bottom: 30px;">
+                <br>
+                <a id="btn_save_comment" href="#" class="btn btn-primary" data-id="<%= form[0].id %>">Save Comment</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<template id="form_data">
+    <%= form[0].data %>
+</template>

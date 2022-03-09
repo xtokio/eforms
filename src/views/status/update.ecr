@@ -1,0 +1,13 @@
+<h3>Settings > <a href="#" data-load-link="load" data-link="/status">Status</a> > Update</h3>
+
+<label for="txt_status" style="display: block; margin-bottom: 5px;">Status</label>
+<input type="text" id="txt_status" placeholder="Status" value="<%= status[0].status %>" style="margin-bottom: 10px;">
+
+<label for="txt_description" style="display: block; margin-bottom: 5px;">Description</label>
+<input type="text" placeholder="Description" id="txt_description" value="<%= status[0].description %>" style="margin-bottom: 10px;">
+
+<div style="text-align: right;">
+    <button id="btn_update" class="btn btn-primary" data-id="<%= status[0].id %>" style="width: 120px;">Update</button>
+</div>
+
+<script src="/assets/js/pages/status.js"></script>

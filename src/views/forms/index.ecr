@@ -1,0 +1,31 @@
+<% if forms.size > 0 %>
+<h3><%= form_status %> [<span style="color: #0c5df4"><%= forms.size %></span>]</h3>
+<table class="styled-table">
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>Folio</th>
+        <th>Form</th>
+        <th>Status</th>
+        <th>User</th>
+        <th>Created at</th>
+        <th>Updated at</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% forms.each do |record| %>
+            <tr>
+              <td><a href="/form/<%= record.id %>" data-id="<%= record.id %>"><%= record.id %></a></td>
+              <td><%= record.form %></td>
+              <td><%= record.type %></td>
+              <td><%= record.status %></td>
+              <td><%= record.name %></td>
+              <td><%= Time.parse!(record.created_at.to_s, "%Y-%m-%d %H:%M:%S %z").to_local.to_s("%Y-%m-%d %H:%M:%S %P") %></td>
+              <td><%= Time.parse!(record.updated_at.to_s, "%Y-%m-%d %H:%M:%S %z").to_local.to_s("%Y-%m-%d %H:%M:%S %P") %></td>
+            </tr>
+        <% end %>  
+    </tbody>
+</table>
+<% else %>
+<h3>No forms were found [<span style="color: #0c5df4">0</span>]</h3>
+<% end %>

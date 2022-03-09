@@ -1,0 +1,32 @@
+<h3>Settings > Access</h3>
+<div style="text-align: right; margin-bottom: 20px;">
+    <a href="#" id="btn_add" class="btn btn-primary" data-load-link="load" data-link="/access/new" style="width: 120px; margin-bottom: 15px;">Add new</a>
+</div>
+<table class="styled-table">
+    <thead>
+        <tr>
+              <th>ID</th>
+              <th>Company</th>
+              <th>Area</th>
+              <th>Department</th>
+              <th>Created at</th>
+              <th>Updated at</th>
+              <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% access.each do |row|%>
+            <tr>
+              <td><%= row.id %></td>
+              <td><%= row.company %></td>
+              <td><%= row.area %></td>
+              <td><%= row.department %></td>
+              <td><%= Time.parse!(row.created_at.to_s, "%Y-%m-%d %H:%M:%S %z").to_local.to_s("%Y-%m-%d %H:%M:%S %P") %></td>
+              <td><%= Time.parse!(row.updated_at.to_s, "%Y-%m-%d %H:%M:%S %z").to_local.to_s("%Y-%m-%d %H:%M:%S %P") %></td>
+              <td>
+                <a href="#"  data-load-link="load" data-link="/access/update/<%= row.id %>">Update</a>
+              </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

@@ -1,0 +1,16 @@
+<h3>Settings > <a href="#" data-load-link="load" data-link="/access">Access</a> > Update</h3>
+
+<label for="txt_department" style="display: block; margin-bottom: 5px;">Department name</label>
+<input type="text" id="txt_department" placeholder="Department name" value="<%= access[0].department %>" style="margin-bottom: 10px;">
+
+<label for="txt_area" style="display: block; margin-bottom: 5px;">Area name</label>
+<input type="text" placeholder="Area name" id="txt_area" value="<%= access[0].area %>" style="margin-bottom: 10px;">
+
+<label for="txt_company" style="display: block; margin-bottom: 5px;">Company name</label>
+<input type="text" placeholder="Company name" id="txt_company" value="<%= access[0].company %>" style="margin-bottom: 10px;">
+
+<div style="text-align: right;">
+    <button id="btn_update" class="btn btn-primary" data-id="<%= access[0].id %>" style="width: 120px;">Update</button>
+</div>
+
+<script src="/assets/js/pages/access.js"></script>

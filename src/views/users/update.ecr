@@ -1,0 +1,36 @@
+<h3>Settings > <a href="#" data-load-link="load" data-link="/users">Users</a> > New</h3>
+
+<label for="txt_user" style="display: block; margin-bottom: 5px;">User</label>
+<input type="text" id="txt_user" placeholder="User" value="<%= user[0].user %>" style="margin-bottom: 10px;">
+
+<label for="txt_password" style="display: block; margin-bottom: 5px;">Password</label>
+<input type="text" id="txt_password" placeholder="Password" value="<%= user[0].password %>" style="margin-bottom: 10px;">
+
+<label for="txt_name" style="display: block; margin-bottom: 5px;">Name</label>
+<input type="text" id="txt_name" placeholder="Full name" value="<%= user[0].name %>" style="margin-bottom: 10px;">
+
+<label for="cmb_active" style="display: block; margin-bottom: 5px;">Active</label>
+<select id="cmb_active">
+  <option value="1" <% if user[0].active == 1 %> selected <% end %>>On</option>
+  <option value="0" <% if user[0].active == 0 %> selected <% end %>>Off</option>
+</select>
+
+<label for="cmb_role" style="display: block; margin-bottom: 5px;">Role</label>
+<select id="cmb_role">
+  <% roles.each do |row|%>
+  <option value="<%= row.id %>" <% if user[0].role_id == row.id %> selected <% end %>><%= row.role %></option>
+  <% end %>
+</select>
+
+<label for="cmb_access" style="display: block; margin-bottom: 5px;">Access</label>
+<select id="cmb_access">
+  <% access.each do |row|%>
+  <option value="<%= row.id %>" <% if user[0].access_id == row.id %> selected <% end %>><%= row.company %> / <%= row.area %> / <%= row.department %></option>
+  <% end %>
+</select>
+
+<div style="text-align: right;">
+    <button id="btn_update" class="btn btn-primary" data-id="<%= user[0].id %>" style="width: 120px;">Update</button>
+</div>
+
+<script src="/assets/js/pages/users.js"></script>

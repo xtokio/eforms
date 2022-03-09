@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eForms | Login</title>
+
+    <link rel="stylesheet" href="/assets/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="form">
+          <div class="sign-in-section">
+              <h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-x-diamond" viewBox="0 0 16 16">
+                    <path d="M7.987 16a1.526 1.526 0 0 1-1.07-.448L.45 9.082a1.531 1.531 0 0 1 0-2.165L6.917.45a1.531 1.531 0 0 1 2.166 0l6.469 6.468A1.526 1.526 0 0 1 16 8.013a1.526 1.526 0 0 1-.448 1.07l-6.47 6.469A1.526 1.526 0 0 1 7.988 16zM7.639 1.17 4.766 4.044 8 7.278l3.234-3.234L8.361 1.17a.51.51 0 0 0-.722 0zM8.722 8l3.234 3.234 2.873-2.873c.2-.2.2-.523 0-.722l-2.873-2.873L8.722 8zM8 8.722l-3.234 3.234 2.873 2.873c.2.2.523.2.722 0l2.873-2.873L8 8.722zM7.278 8 4.044 4.766 1.17 7.639a.511.511 0 0 0 0 .722l2.874 2.873L7.278 8z"/>
+                </svg>
+                <?xml version="1.0" encoding="utf-8"?>
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 380 120" style="enable-background:new 0 0 300 120;" xml:space="preserve">
+                <style type="text/css">
+                    .st0{fill:#24303a;}
+                    .st1{font-family:'TrebuchetMS-Bold';}
+                    .st2{font-size:105px;}
+                </style>
+                    <text transform="matrix(1 0 0 1 6.9122 79.5098)" class="st0 st1 st2">eforms</text>
+                </svg>
+              </h1>
+            <h1>Log in</h1>
+              <div class="form-field">
+                <label for="txt_user">User</label>
+                <input id="txt_user" type="text" placeholder="User" />
+              </div>
+              <div class="form-field">
+                <label for="txt_password">Password</label>
+                <input id="txt_password" type="password" placeholder="Password" />
+              </div>
+              <div class="form-options">
+                <div class="checkbox-field">
+                  <input id="rememberMe" type="checkbox" class="checkbox" />
+                  <label for="rememberMe">Remember Me</label>
+                </div>
+                <a href="#">Forgot Password?</a>
+              </div>
+              <div class="form-field">
+                <input type="button" id="btn_login" class="btn btn-signin" value="Submit" />
+              </div>
+            <div class="links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms & Conditions</a> 
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <script src="/assets/js/vendor/jquery.min.js"></script>
+    <script src="/assets/js/vendor/loadingoverlay.js"></script>
+    <script src="/assets/js/vendor/sweetalert2.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+    <script>
+        $(document).ready(function(){
+      
+            $.LoadingOverlaySetup({
+              color           : "rgba(0, 0, 0, 0.8)",
+              image           : "/assets/img/spinner.svg",
+              maxSize         : "80px",
+              minSize         : "20px",
+              resizeInterval  : 0,
+              size            : "100%"
+            });
+      
+            // Show full page LoadingOverlay
+            //$.LoadingOverlay("show");
+      
+            //Close the LoadingOverlay
+            //$.LoadingOverlay("hide");
+
+            // Check credentials
+            $("#txt_user").val(window.localStorage.getItem("agent_user"));
+            $("#txt_password").val(window.localStorage.getItem("agent_password"));
+            if(window.localStorage.getItem("agent_user") != null && window.localStorage.getItem("agent_password") != null)
+              $("#rememberMe").prop("checked", true);
+      
+            $(document).keyup(function(e){
+              if(e.keyCode == 13)
+              {
+                login();
+              }
+            });
+      
+            $("#txt_password").keyup(function(e){
+              if(e.keyCode == 13)
+              {
+                login();
+              }
+            });
+      
+            $("#btn_login").on("click",function(){
+              login();
+            });
+
+            $("#lnk_forgot").on("click", function(){
+              Main.show_info("Get in contact with your Supervisor to restore your Password.");
+            });
+
+            $("#lnk_create").on("click", function(){
+              Main.show_info("Get in contact with your Supervisor to create a new Account.");
+            });
+
+          });
+      
+          async function login()
+          {
+            $.LoadingOverlay("show");
+      
+              let user = $("#txt_user").val();
+              let password = $("#txt_password").val();
+
+              data = {user,password};
+              const response = await Main.login(data);
+              const login_information = await response.json();
+              $.LoadingOverlay("hide");
+
+              if(login_information.status == "OK")
+              {
+                if($("#rememberMe").is(":checked"))
+                {
+                  window.localStorage.setItem("agent_user", user);
+                  window.localStorage.setItem("agent_password", password);
+                }
+                document.location.replace('/');
+              }
+              else
+              {
+                Main.show_error("User / Password not found");
+              }
+          }
+      
+          class Main
+          {
+            static login(params={})
+            {
+              return Main.post("/login",params)
+              .catch(function(message){
+                $.LoadingOverlay("hide");
+                Main.show_error(message)
+              });
+            }
+      
+            static post(url,params={})
+            {
+              return fetch(url,{
+                method: 'POST',
+                headers: {
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'Content-Type': 'application/json'
+                },
+                credentials: 'same-origin',
+                body: JSON.stringify(params)
+              });
+            }
+      
+            static show_success(message)
+            {
+              swal({
+                title: "Success",
+                text: message,
+                type: "success",
+                buttonsStyling: !1,
+                confirmButtonClass: "btn btn-success"
+              });
+            }
+
+            static show_info(message)
+            {
+              swal({
+                title: "Information",
+                text: message,
+                type: "info",
+                buttonsStyling: !1,
+                confirmButtonClass: "btn btn-default"
+              });
+            }
+      
+            static show_error(message)
+            {
+              swal({
+                title: "Warning",
+                text: message,
+                type: "warning",
+                buttonsStyling: !1,
+                confirmButtonClass: "btn btn-warning"
+              });
+            }
+      
+        }
+    </script>
+</body>
+</html>
+    

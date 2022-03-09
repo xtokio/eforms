@@ -1,0 +1,44 @@
+<h3>Settings > Users</h3>
+<div style="text-align: right; margin-bottom: 20px;">
+    <a href="#" id="btn_add" class="btn btn-primary" data-load-link="load" data-link="/users/new" style="width: 120px; margin-bottom: 15px;">Add new</a>
+</div>
+<table class="styled-table">
+    <thead>
+        <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>User</th>
+              <th>Password</th>
+              <th>Active</th>
+              <th>Role</th>
+              <th>Access</th>
+              <th>Created at</th>
+              <th>Updated at</th>
+              <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% users.each do |row|%>
+            <tr>
+              <td><%= row.id %></td>
+              <td><%= row.name %></td>
+              <td><%= row.user %></td>
+              <td><%= row.password %></td>
+              <td>
+              <% if row.active == 0 %>
+                Off
+              <% else %>
+                On
+              <% end %>
+              </td>
+              <td><%= row.role %></td>
+              <td><%= row.company %> / <%= row.area %> / <%= row.department %></td>
+              <td><%= Time.parse!(row.created_at.to_s, "%Y-%m-%d %H:%M:%S %z").to_local.to_s("%Y-%m-%d %H:%M:%S %P") %></td>
+              <td><%= Time.parse!(row.updated_at.to_s, "%Y-%m-%d %H:%M:%S %z").to_local.to_s("%Y-%m-%d %H:%M:%S %P") %></td>
+              <td>
+                <a href="#"  data-load-link="load" data-link="/users/update/<%= row.id %>">Update</a>
+              </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

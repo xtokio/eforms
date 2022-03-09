@@ -1,0 +1,38 @@
+version: 2.0
+shards:
+  backtracer:
+    git: https://github.com/sija/backtracer.cr.git
+    version: 1.2.1
+
+  crecto:
+    git: https://github.com/xtokio/crecto.git
+    version: 0.11.5+git.commit.805eee2c32833bd2df16070016f6c5fc977ae968
+
+  db:
+    git: https://github.com/crystal-lang/crystal-db.git
+    version: 0.11.0
+
+  exception_page:
+    git: https://github.com/crystal-loot/exception_page.git
+    version: 0.2.2
+
+  kemal:
+    git: https://github.com/kemalcr/kemal.git
+    version: 1.1.2+git.commit.1d54971efa41089a6821ee14bb14357af5cfb503
+
+  kemal-session:
+    git: https://github.com/kemalcr/kemal-session.git
+    version: 1.0.0
+
+  radix:
+    git: https://github.com/luislavena/radix.git
+    version: 0.4.1
+
+  rucksack:
+    git: https://github.com/busyloop/rucksack.git
+    version: 2.0.0
+
+  sqlite3:
+    git: https://github.com/crystal-lang/crystal-sqlite3.git
+    version: 0.19.0
+

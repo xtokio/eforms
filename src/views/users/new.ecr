@@ -1,0 +1,36 @@
+<h3>Settings > <a href="#" data-load-link="load" data-link="/users">Users</a> > New</h3>
+
+<label for="txt_user" style="display: block; margin-bottom: 5px;">User</label>
+<input type="text" id="txt_user" placeholder="User" style="margin-bottom: 10px;">
+
+<label for="txt_password" style="display: block; margin-bottom: 5px;">Password</label>
+<input type="text" placeholder="Password" id="txt_password" style="margin-bottom: 10px;">
+
+<label for="txt_name" style="display: block; margin-bottom: 5px;">Name</label>
+<input type="text" placeholder="Full name" id="txt_name" style="margin-bottom: 10px;">
+
+<label for="cmb_active" style="display: block; margin-bottom: 5px;">Active</label>
+<select id="cmb_active">
+  <option value="1">On</option>
+  <option value="0">Off</option>
+</select>
+
+<label for="cmb_role" style="display: block; margin-bottom: 5px;">Role</label>
+<select id="cmb_role">
+  <% roles.each do |row|%>
+  <option value="<%= row.id %>"><%= row.role %></option>
+  <% end %>
+</select>
+
+<label for="cmb_access" style="display: block; margin-bottom: 5px;">Access</label>
+<select id="cmb_access">
+  <% access.each do |row|%>
+  <option value="<%= row.id %>"><%= row.company %> / <%= row.area %> / <%= row.department %></option>
+  <% end %>
+</select>
+
+<div style="text-align: right;">
+    <button id="btn_new" class="btn btn-primary" style="width: 120px;">Create</button>
+</div>
+
+<script src="/assets/js/pages/users.js"></script>

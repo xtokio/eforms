@@ -1,0 +1,13 @@
+<h3>Settings > <a href="#" data-load-link="load" data-link="/roles">Roles</a> > Update</h3>
+
+<label for="txt_role" style="display: block; margin-bottom: 5px;">Role name</label>
+<input type="text" id="txt_role" placeholder="Role name" value="<%= role[0].role %>" style="margin-bottom: 10px;">
+
+<label for="txt_description" style="display: block; margin-bottom: 5px;">Role description</label>
+<input type="text" placeholder="Role description" id="txt_description" value="<%= role[0].description %>" style="margin-bottom: 10px;">
+
+<div style="text-align: right;">
+    <button id="btn_update" class="btn btn-primary" data-id="<%= role[0].id %>" style="width: 120px;">Update</button>
+</div>
+
+<script src="/assets/js/pages/roles.js"></script>
