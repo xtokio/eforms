@@ -148,6 +148,34 @@
                 <%= row.description %> [<%= Controller::Forms.get_by_status_id(env,row.id.to_s.to_i).size %>]
             </div>
             <% end %>
+
+            <div class="notification-bellWrapper notification-new">
+              <div class="notification-bell">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                   viewBox="0 0 14 13" style="enable-background:new 0 0 14 13;" xml:space="preserve">
+                <path class="notification-bellBody" d="M13.9,11c-0.2-0.3-0.5-0.6-0.5-0.6c-1.7-1.7-2.7-4-2.9-6.4V3.5C10.5,1.6,8.9,0,7,0S3.5,1.6,3.5,3.5V4
+                  c-0.2,2.4-1.2,4.7-2.9,6.4c-0.2,0.2-0.3,0.4-0.5,0.6C0,11.3,0,11.7,0,12c0,0.6,0.4,1,1,1h12c0.6,0,1-0.4,1-1
+                  C14,11.7,14,11.3,13.9,11L13.9,11z"/>
+                </svg>
+              </div>
+              <div class="notification-bellRing">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                   viewBox="0 0 4 2" style="enable-background:new 0 0 4 2;" xml:space="preserve">
+                <path class="notification-bellRingBody" d="M2,2c1.1,0,2-0.9,2-2H0C0,1.1,0.9,2,2,2z"/>
+                </svg>
+              </div>
+              <div class="notification-loaderWrapper">
+                <svg class="notification-loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 11 11" style="enable-background:new 0 0 11 11;" xml:space="preserve">
+              <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="5.5" y1="2.5" x2="5.5" y2="11.5" gradientTransform="matrix(1 0 0 -1 0 12.5)">
+                <stop  offset="0" style="stop-color:#24303a"/>
+                <stop  offset="1" style="stop-color:#24303a;stop-opacity:0"/>
+              </linearGradient>
+              <circle style="fill:#24303a;fill-opacity:0;stroke:url(#SVGID_1_);stroke-width:2;stroke-linejoin:round;" cx="5.5" cy="5.5" r="4.5"/>
+              </svg>
+              </div>
+              <div class="notification-count">19</div>
+            </div>
         </div>
 
      </div>
@@ -223,6 +251,11 @@
                     window.history.pushState({}, null, "/");
                 }
             }
+        });
+
+        // Notification
+        $(".notification-bellWrapper").on("click",function(){
+          $(this).toggleClass("notification-new");
         });
 
     });

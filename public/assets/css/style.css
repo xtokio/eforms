@@ -1302,6 +1302,170 @@ label {
   box-shadow: 0 3px 9px rgb(50 50 9 / 0%), 3px 4px 8px rgb(94 114 228 / 10%);
 }
 
+/* Notification bell */
+.notification-bellWrapper {
+  display: inline-block;
+  position: relative;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+.notification-bell {
+  fill: #24303a;
+  width: 16px;
+  height: 16px;
+  border-right: none !important;
+ }
+
+.notification-bellRing {
+  fill: #24303a;
+  position: relative;
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 2px;
+  transform-origin: 1px -11px; 
+}
+
+.notification-new .notification-bell {
+  animation: bellMove .4s ease-out 1, bellFill .4s linear 1 forwards;
+}
+
+.notification-new .notification-bellRing {
+  animation: ringMove .4s ease-out .05s 1, bellFill .4s linear 1 forwards;
+}
+
+.notification-bellRing svg {
+  display: block;
+}
+
+@keyframes bellMove {
+  0% {
+    transform: rotate(0);
+  }
+  
+  25% {
+    transform: rotate(-20deg);
+  }
+  
+  50% {
+    transform: rotate(0deg);
+  } 
+  
+  75% {
+    transform: rotate(20deg);
+  }
+  
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes ringMove {
+  0% {
+    transform: rotate(0);
+  }
+  
+  25% {
+    transform: rotate(-25deg);
+  }
+  
+  50% {
+    transform: rotate(0deg);
+  } 
+  
+  75% {
+    transform: rotate(25deg);
+  }
+  
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes bellFill {
+  0% {
+    fill: #24303a;
+  }
+  
+  85% {
+    fill: #24303a;
+  }
+  
+  100% {
+    fill: #24303a;
+  }
+}
+ 
+.notification-count {
+  background: #FD2512;
+  display: inline-block;
+  position: absolute;
+  top: -3px;
+  left: 12px;
+  color: white;
+  border-radius: 10px;
+  padding: 0 5px;
+  font-size: 10px;
+  font-weight: lighter; 
+  line-height: 13px;
+  font-family: 'Helvetica', Arial;
+  transform: scale(0);
+}
+
+.notification-new .notification-count {
+  animation: notificationCount .3s linear .3s 1 forwards;
+}
+
+@keyframes notificationCount {
+  0% {
+    transform: scale(0);
+  }
+  
+  85% {
+    transform: scale(1.2); 
+  }
+  
+  100% {
+    transform: scale(1);
+  }
+}
+
+.notification-loaderWrapper {
+  background: #354052;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: -2px;
+  left: 12px;
+  z-index: 10;
+  border-radius: 7px;
+}
+
+.notification-loaderWrapper {
+  display: none;
+}
+
+.notification-loading .notification-loaderWrapper {
+  display: block;
+}
+
+
+.notification-loading .notification-loader {
+  display: block;
+  animation: notificationLoader .7s linear infinite;
+}
+
+@keyframes notificationLoader {
+  0% {
+    transform: rotate(0);
+  }
+  
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 input:focus, select:focus {
   border-color: #07f;
 }
