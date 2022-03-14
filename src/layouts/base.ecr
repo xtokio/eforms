@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="/assets/css/style.css">
   <script>
       // Messages
-      let socket = new WebSocket(`ws://${location.host}/message`);
+      let socket = new WebSocket(`wss://${location.host}/message`);
 
         socket.onopen = function(e) 
         {
