@@ -9,6 +9,8 @@ $("#btn_create").on("click", async function(){
         let data_response = await response.json();
         if(data_response.status == "OK")
             App.show_success(data_response.message,() => $(".search-status").first().trigger("click") );
+        
+        socket.send(data_response.message);
     }
     else
     {

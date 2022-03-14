@@ -165,6 +165,14 @@ class App
         });
     }
 
+    static toast_message(title,message)
+    {
+        VanillaToasts.create({
+            title: title,
+            text: message
+        });
+    }
+
     static show_success(message,callback=function(){})
     {
         swal({
