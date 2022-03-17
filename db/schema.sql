@@ -1,4 +1,15 @@
 BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "notifications" (
+	"id"	INTEGER NOT NULL,
+	"notification"	TEXT NOT NULL DEFAULT '',
+	"form_id"	INTEGER NOT NULL,
+	"for_user"	TEXT NOT NULL,
+	"by_user"	TEXT NOT NULL,
+	"viewed"	INTEGER NOT NULL DEFAULT 0,
+	"created_at"	TEXT NOT NULL DEFAULT '',
+	"updated_at"	TEXT NOT NULL DEFAULT '',
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
 CREATE TABLE IF NOT EXISTS "access" (
 	"id"	INTEGER NOT NULL,
 	"company"	TEXT NOT NULL DEFAULT '',
@@ -25,7 +36,7 @@ CREATE TABLE IF NOT EXISTS "comments" (
 	"user_id"	INTEGER NOT NULL,
 	"form_id"	INTEGER NOT NULL,
 	"created_at"	TEXT NOT NULL DEFAULT '',
-	"updated_at"	INTEGER NOT NULL DEFAULT '',
+	"updated_at"	TEXT NOT NULL DEFAULT '',
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "forms" (
