@@ -75,12 +75,13 @@ module Eforms
     get "/" do |env|
         if Controller::Application.user_logged(env)
             
-            user_name =   env.session.string("user_name")
+            user_name  =  env.session.string("user_name")
             user_photo =  env.session.string("user_photo")
-            is_admin =    env.session.bool("is_admin")
+            is_admin   =  env.session.bool("is_admin")
             
-            status = Controller::Status.all()
-            forms = Controller::Types.active()
+            status        = Controller::Status.all()
+            forms         = Controller::Types.active()
+            notifications = Controller::Notifications.get_by_for_user(user_name)
             
             render "src/views/dashboard/index.ecr", "src/layouts/base.ecr"
         else

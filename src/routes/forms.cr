@@ -15,6 +15,7 @@ get "/form/:id" do |env|
         is_admin =    env.session.bool("is_admin")
 
         forms = Controller::Types.active()
+        notifications = Controller::Notifications.get_by_for_user(user_name)
 
         id = env.params.url["id"]
         users = Controller::Users.all()

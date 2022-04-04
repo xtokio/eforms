@@ -219,7 +219,9 @@
               <circle style="fill:#24303a;fill-opacity:0;stroke:url(#SVGID_1_);stroke-width:2;stroke-linejoin:round;" cx="5.5" cy="5.5" r="4.5"/>
               </svg>
               </div>
-              <div class="notification-count">19</div>
+              <% if notifications.size > 0 %>
+              <div class="notification-count"><%= notifications.size %></div>
+              <% end %>
             </div>
         </div>
 
