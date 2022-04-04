@@ -25,6 +25,17 @@ module Controller
 
       data_id = changeset.instance.id
 
+      # Add notification
+      user  = Model::ConnDB.all(Model::ViewUsers, Query.where(id: user_id))
+      eform = Model::ConnDB.all(Model::ViewForms, Query.where(id: form_id))
+      assigned_to = eform[0].assigned_to.to_s.split(",")
+      assigned_to.each do |for_user|
+        if user[0].name.to_s != for_user
+          notification = "eForm #{form_id} has a new Comment by #{user[0].name.to_s}"
+          Controller::Notifications.create(notification, form_id.to_i, for_user, user[0].name.to_s)
+        end
+      end
+
       {status: "OK",id: data_id, message: "Comment : #{data_id} was created."}.to_json
     end
 

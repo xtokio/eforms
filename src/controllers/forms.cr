@@ -74,6 +74,16 @@ module Controller
       data_record.data        = data
       changeset = Model::ConnDB.update(data_record)
 
+      # Add notification
+      eform = Model::ConnDB.all(Model::ViewForms, Query.where(id: id))
+      assigned_to = eform[0].assigned_to.to_s.split(",")
+      assigned_to.each do |for_user|
+        if env.session.string("user_name") != for_user
+          notification = "eForm #{id} was updated by #{env.session.string("user_name")}"
+          Controller::Notifications.create(notification, id.to_i, for_user, env.session.string("user_name"))
+        end
+      end
+
       {status: "OK",id: id, message: "eForm : #{id} was updated."}.to_json
     end
 
@@ -84,19 +94,38 @@ module Controller
         data_record = Model::ConnDB.get!(Model::Forms, id)
         data_record.assigned_to = assigned_to
         changeset = Model::ConnDB.update(data_record)
+
+        # Add notification
+        assigned_to.to_s.split(",").each do |for_user|
+          if env.session.string("user_name") != for_user
+            notification = "eForm #{id} new Assigned to user was added by #{env.session.string("user_name")}"
+            Controller::Notifications.create(notification, id.to_i, for_user, env.session.string("user_name"))
+          end
+        end
   
         {status: "OK",id: id, message: "eForm : #{id} was updated."}.to_json
     end
 
     def update_status(env)
-        id        = env.params.json["id"].as(String)
-        status_id = env.params.json["status_id"].as(String)
-        
-        data_record = Model::ConnDB.get!(Model::Forms, id)
-        data_record.status_id = status_id.to_i
-        changeset = Model::ConnDB.update(data_record)
-  
-        {status: "OK",id: id, message: "eForm : #{id} was updated."}.to_json
+      id        = env.params.json["id"].as(String)
+      status_id = env.params.json["status_id"].as(String)
+      
+      data_record = Model::ConnDB.get!(Model::Forms, id)
+      data_record.status_id = status_id.to_i
+      changeset = Model::ConnDB.update(data_record)
+
+      # Add notification
+      status = Model::ConnDB.all(Model::Status, Query.where(id: status_id))
+      eform  = Model::ConnDB.all(Model::ViewForms, Query.where(id: id))
+      assigned_to = eform[0].assigned_to.to_s.split(",")
+      assigned_to.each do |for_user|
+        if env.session.string("user_name") != for_user
+          notification = "eForm #{id} Status changed to #{status[0].description} by #{env.session.string("user_name")}"
+          Controller::Notifications.create(notification, id.to_i, for_user, env.session.string("user_name"))
+        end
+      end
+
+      {status: "OK",id: id, message: "eForm : #{id} was updated."}.to_json
     end
 
   end
