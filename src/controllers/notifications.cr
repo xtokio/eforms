@@ -13,7 +13,7 @@ module Controller
     end
 
     def get_by_for_user(for_user : String)
-      Model::ConnDB.all(Model::Notification, Query.where(for_user: for_user))
+      Model::ConnDB.all(Model::Notification, Query.where(for_user: for_user).where(viewed: 0))
     end
 
     def create(notification : String, form_id : Int32, for_user : String, by_user : String)
