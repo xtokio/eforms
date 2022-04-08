@@ -194,35 +194,47 @@
             </div>
             <% end %>
 
-            <div class="notification-bellWrapper notification-new">
-              <div class="notification-bell">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                   viewBox="0 0 14 13" style="enable-background:new 0 0 14 13;" xml:space="preserve">
-                <path class="notification-bellBody" d="M13.9,11c-0.2-0.3-0.5-0.6-0.5-0.6c-1.7-1.7-2.7-4-2.9-6.4V3.5C10.5,1.6,8.9,0,7,0S3.5,1.6,3.5,3.5V4
-                  c-0.2,2.4-1.2,4.7-2.9,6.4c-0.2,0.2-0.3,0.4-0.5,0.6C0,11.3,0,11.7,0,12c0,0.6,0.4,1,1,1h12c0.6,0,1-0.4,1-1
-                  C14,11.7,14,11.3,13.9,11L13.9,11z"/>
-                </svg>
-              </div>
-              <div class="notification-bellRing">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                   viewBox="0 0 4 2" style="enable-background:new 0 0 4 2;" xml:space="preserve">
-                <path class="notification-bellRingBody" d="M2,2c1.1,0,2-0.9,2-2H0C0,1.1,0.9,2,2,2z"/>
-                </svg>
-              </div>
-              <div class="notification-loaderWrapper">
-                <svg class="notification-loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                 viewBox="0 0 11 11" style="enable-background:new 0 0 11 11;" xml:space="preserve">
-              <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="5.5" y1="2.5" x2="5.5" y2="11.5" gradientTransform="matrix(1 0 0 -1 0 12.5)">
-                <stop  offset="0" style="stop-color:#24303a"/>
-                <stop  offset="1" style="stop-color:#24303a;stop-opacity:0"/>
-              </linearGradient>
-              <circle style="fill:#24303a;fill-opacity:0;stroke:url(#SVGID_1_);stroke-width:2;stroke-linejoin:round;" cx="5.5" cy="5.5" r="4.5"/>
-              </svg>
-              </div>
-              <% if notifications.size > 0 %>
-              <div class="notification-count"><%= notifications.size %></div>
-              <% end %>
-            </div>
+            <nav class="dropdown" role="navigation">
+              <ul>
+                <li>
+                  <div class="notification-bellWrapper notification-new">
+                    <div class="notification-bell">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 14 13" style="enable-background:new 0 0 14 13;" xml:space="preserve">
+                      <path class="notification-bellBody" d="M13.9,11c-0.2-0.3-0.5-0.6-0.5-0.6c-1.7-1.7-2.7-4-2.9-6.4V3.5C10.5,1.6,8.9,0,7,0S3.5,1.6,3.5,3.5V4
+                        c-0.2,2.4-1.2,4.7-2.9,6.4c-0.2,0.2-0.3,0.4-0.5,0.6C0,11.3,0,11.7,0,12c0,0.6,0.4,1,1,1h12c0.6,0,1-0.4,1-1
+                        C14,11.7,14,11.3,13.9,11L13.9,11z"/>
+                      </svg>
+                    </div>
+                    <div class="notification-bellRing">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 4 2" style="enable-background:new 0 0 4 2;" xml:space="preserve">
+                      <path class="notification-bellRingBody" d="M2,2c1.1,0,2-0.9,2-2H0C0,1.1,0.9,2,2,2z"/>
+                      </svg>
+                    </div>
+                    <div class="notification-loaderWrapper">
+                      <svg class="notification-loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                       viewBox="0 0 11 11" style="enable-background:new 0 0 11 11;" xml:space="preserve">
+                    <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="5.5" y1="2.5" x2="5.5" y2="11.5" gradientTransform="matrix(1 0 0 -1 0 12.5)">
+                      <stop  offset="0" style="stop-color:#24303a"/>
+                      <stop  offset="1" style="stop-color:#24303a;stop-opacity:0"/>
+                    </linearGradient>
+                    <circle style="fill:#24303a;fill-opacity:0;stroke:url(#SVGID_1_);stroke-width:2;stroke-linejoin:round;" cx="5.5" cy="5.5" r="4.5"/>
+                    </svg>
+                    </div>
+                    <% if notifications.size > 0 %>
+                    <div class="notification-count"><%= notifications.size %></div>
+                    <% end %>
+                  </div>
+                  <ul class="dropdown submenu" aria-label="submenu">
+                  <% notifications.each do |record| %>
+                      <li><a href="#" data-viewed_id="<%= record.id %>" data-viewed="<%= record.viewed %>"><%= record.notification %></a></li>
+                  <% end %>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+            
         </div>
 
      </div>
@@ -303,9 +315,32 @@
 
         // Notification
         $(".notification-bellWrapper").on("click",function(){
-          $(this).toggleClass("notification-new");
 
-            App.toast_message("Message","This is a message alert, this is only a test");
+          if($(this).next().children('li').length > 0)
+          {
+            $(this).next().children('li').each(function(item){
+              App.toast_message($(this).text(),"",$(this).children('a').first().attr("data-viewed_id"));
+            });
+          }
+          // $(this).toggleClass("notification-new");
+          // App.toast_message("Message","This is a message alert, this is only a test");
+        });
+
+        $(document).on("click",".vanillatoasts-toast", async function(){
+          let id = $(this).attr("data-viewed_id");
+          let params = {id};
+          let response = await App.post("/notification/viewed",params).catch(message => App.show_error(message));
+          let data_response = await response.json();
+          if(data_response.status == "OK")
+          {
+            let notification_count = Number($(".notification-count").text());
+            if(notification_count == 1)
+              $(".notification-count").remove();
+            else
+              $(".notification-count").text(notification_count - 1);
+            
+              $(`a[data-viewed_id='${id}']`).parent().remove()
+          }
         });
 
         // Send message

@@ -165,11 +165,12 @@ class App
         });
     }
 
-    static toast_message(title,message)
+    static toast_message(title="",message="",data="")
     {
         VanillaToasts.create({
             title: title,
-            text: message
+            text: message,
+            data_id: data
         });
     }
 

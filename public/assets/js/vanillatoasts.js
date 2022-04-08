@@ -33,7 +33,7 @@
       toast.className = 'vanillatoasts-toast';
   
       // title
-      if (options.title) {
+      if (options.title != "") {
         var h4 = document.createElement('h4');
         h4.className = 'vanillatoasts-title';
         h4.innerHTML = options.title;
@@ -41,11 +41,16 @@
       }
   
       // text
-      if (options.text) {
+      if (options.text != "") {
         var p = document.createElement('p');
         p.className = 'vanillatoasts-text';
         p.innerHTML = options.text;
         toast.appendChild(p);
+      }
+
+      // data_id
+      if (options.data_id.length > 0) {
+        toast.dataset.viewed_id = options.data_id;
       }
   
       // icon
