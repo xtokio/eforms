@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>eForms</title>
+  <!-- CSS Assets -->
   <link rel="stylesheet" href="/assets/css/bootstrap-icons.css">
   <link rel="stylesheet" href="/assets/css/gridforms.css">
   <link rel="stylesheet" href="/assets/css/datepicker.css">
@@ -13,6 +14,18 @@
   <link rel="stylesheet" href="/assets/js/vendor/codemirror/lib/codemirror.css"/>
   <link rel="stylesheet" href="/assets/css/vanillatoasts.css"/>
   <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- JS Assets -->
+  <script src="/assets/js/base.js"></script>
+  <script src="/assets/js/vendor/codemirror/lib/codemirror.js"></script>
+  <script src="/assets/js/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+  <script src="/assets/js/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+  <script src="/assets/js/vendor/codemirror/mode/xml/xml.js"></script>
+  <script src="/assets/js/vendor/codemirror/mode/javascript/javascript.js"></script>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/main.js"></script>
+
   <script>
       // Messages
       let socket = new WebSocket(`wss://${location.host}/message`);
@@ -50,6 +63,8 @@
         };
   </script>
 </head>
+
+
 <body id="body-pd" class="body-pd">
   <div id="navbar" class="l-navbar expander">
     <nav class="nav">
@@ -250,33 +265,9 @@
     </div>
   </div>
   
-  <script src="/assets/js/vendor/jquery.min.js"></script>
-  <script src="/assets/js/vendor/simpleUpload.js"></script>
-  <script src="/assets/js/vendor/loadingoverlay.js"></script>
-  <script src="/assets/js/vendor/gridforms.js"></script>
-  <script src="/assets/js/vendor/datepicker-full.min.js"></script>
-  <script src="/assets/js/vendor/select2.min.js"></script>
-  <script src="/assets/js/vendor/sweetalert2.min.js"></script>
-  <script src="/assets/js/vendor/snap.svg.min.js"></script>
-  <script src="/assets/js/vendor/codemirror/lib/codemirror.js"></script>
-  <script src="/assets/js/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-  <script src="/assets/js/vendor/codemirror/addon/edit/matchbrackets.js"></script>
-  <script src="/assets/js/vendor/codemirror/mode/xml/xml.js"></script>
-  <script src="/assets/js/vendor/codemirror/mode/javascript/javascript.js"></script>
-  <script src="/assets/js/vanillatoasts.js"></script>
-  <script src="/assets/js/app.js"></script>
-  <script src="/assets/js/main.js"></script>
-  <script src="/assets/js/pages/forms/show.js"></script>
   <script>
     $(document).ready(function(){
-        $.LoadingOverlaySetup({
-            color           : "rgba(0, 0, 0, 0.8)",
-            image           : "/assets/img/spinner.svg",
-            maxSize         : "80px",
-            minSize         : "20px",
-            resizeInterval  : 0,
-            size            : "100%"
-        });
+
         // Show full page LoadingOverlay
         //$.LoadingOverlay("show");
 

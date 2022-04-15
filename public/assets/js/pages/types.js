@@ -5,6 +5,8 @@ var template_code_mirror = CodeMirror.fromTextArea(txt_template, {
 $("#btn_show_preview").on("click",function(){
     $("#div_show_preview").html(template_code_mirror.getValue());
     App.components();
+    
+    location.href = "#div_show_preview";
 });
 
 $("#btn_update").on("click", async function(){
