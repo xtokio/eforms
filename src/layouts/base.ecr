@@ -27,40 +27,40 @@
   <script src="/assets/js/main.js"></script>
 
   <script>
-      // Messages
-      let socket = new WebSocket(`wss://${location.host}/message`);
+    // Messages
+    let socket = new WebSocket(`wss://${location.host}/message`);
 
-        socket.onopen = function(e) 
+    socket.onopen = function(e)
+    {
+        console.log("[open] Connection established");
+    };
+
+    socket.onmessage = function(event) 
+    {
+        console.log(`[message] Data received from server: ${event.data}`);
+        let message_data = JSON.parse(event.data);
+
+        if(message_data.type == "toast")
+            App.toast_message("Message",message_data.message);
+    };
+
+    socket.onclose = function(event) 
+    {
+        if (event.wasClean) 
         {
-            console.log("[open] Connection established");
-        };
-
-        socket.onmessage = function(event) 
+            console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+        } 
+        else 
         {
-            console.log(`[message] Data received from server: ${event.data}`);
-            let message_data = JSON.parse(event.data);
+            // e.g. server process killed or network down
+            // event.code is usually 1006 in this case
+            console.log('[close] Connection died');
+        }
+    };
 
-            if(message_data.type == "toast")
-                App.toast_message("Message",message_data.message);
-        };
-
-        socket.onclose = function(event) 
-        {
-            if (event.wasClean) 
-            {
-                console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
-            } 
-            else 
-            {
-                // e.g. server process killed or network down
-                // event.code is usually 1006 in this case
-                console.log('[close] Connection died');
-            }
-        };
-
-        socket.onerror = function(error) {
-            console.log(`[error] ${error.message}`);
-        };
+    socket.onerror = function(error) {
+        console.log(`[error] ${error.message}`);
+    };
   </script>
 </head>
 
