@@ -54,8 +54,9 @@ eForm update / creation
 
 ## Development
 
-1. Refactor dashboard
-2. Import `csv` file
+1. Add documentation on how to create an eForm
+2. Refactor dashboard
+3. Import `csv` file
 
 ## Contributing
 
