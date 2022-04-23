@@ -2,6 +2,10 @@
 
 Simple forms creation and follow ups
 
+https://eforms.mischicanadas.com
+User: lgomez
+Pass: lgomez
+
 ## Installation
 
 ```crystal
