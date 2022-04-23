@@ -40,6 +40,19 @@ class App
                         
                         document.querySelector(element).appendChild(newScript);
                     }
+                    else if(content.indexOf("<script") > -1)
+                    {
+                        var parser = new DOMParser();
+                        var doc = parser.parseFromString(content, 'text/html');
+                        var script_tag = doc.querySelector('script');
+                        var newScript = document.createElement("script");
+                        newScript.innerHTML = script_tag.innerHTML;
+
+                        content = content.substring(content.indexOf("<script"),-1);
+                        document.querySelector(element).innerHTML = content;
+                        
+                        document.querySelector(element).appendChild(newScript);
+                    }
                     else
                         if(content.indexOf('{"status":"ERROR"}') > -1)
                             window.location.href = "/"
