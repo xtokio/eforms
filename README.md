@@ -25,6 +25,130 @@ PUBLIC_PATH=/Users/luis/Dropbox/Code/Crystal/apps/eforms/public
 DATABASE_PATH=/Users/luis/Dropbox/Code/Crystal/apps/eforms/db/eforms.db
 PORT=3000
 ```
+eForm structure
+```html
+<form class="grid-form">          
+  <fieldset>
+    <legend>Section title 1</legend>
+
+    <div data-row-span="2">
+      <div data-field-span="1">
+        <label>Element label</label>
+        <!-- Custom element -->
+      </div>
+      <div data-field-span="1">
+        <label>Element label</label>
+        <!-- Custom element -->
+      </div>
+    </div>
+  </fieldset>
+</form>
+```
+
+eForm custom elements
+```html
+<!-- All elements must have an id attribute -->
+
+<!-- Input element -->
+<input id="txt_element" type="text">
+
+<!-- Input datetime picker element -->
+<input type="text" id="dtp_datepicker" class="datepicker-custom">
+
+<!-- Checkbox element -->
+<input type="checkbox" id="chk_element_1">
+<label for="chk_element_1">Checkbox 1</label>
+
+<!-- Radiobutton element -->
+<input class="radio" id="rdb_element_1" name="rd" type="radio">
+<label for="rdb_element_1" class="radio-label">Radio 1</label>
+
+<!-- Single select dropdown -->
+<select id="cmb_simple" class="simple">
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+</select>
+
+<!-- Multiple select dropdown -->
+ <select id="cmb_multiple" class="multiple" multiple>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+    <option value="4">Four</option>
+    <option value="5">Five</option>
+  </select>
+
+```
+
+eForm basic template
+```html
+<form class="grid-form">          
+  <fieldset>
+    <legend>Section title 1</legend>
+
+    <div data-row-span="4">
+      <div data-field-span="1">
+        <label>Student ID</label>
+        <input id="txt_student_id" type="text">
+      </div>
+      <div data-field-span="2">
+        <label>Student Full Name</label>
+        <input id="txt_student_full_name" type="text">
+      </div>
+      <div data-field-span="1">
+        <label>Date of Birth</label>
+        <input type="text" id="dtp_datepicker" class="datepicker-custom">
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Section title 2</legend>
+
+    <div data-row-span="2">
+      <div data-field-span="1">
+        <label>Languages</label>
+        <input type="checkbox" id="box-2">
+        <label for="box-2">English</label>
+
+        <input type="checkbox" id="box-3">
+        <label for="box-3">Spanish</label>
+
+      </div>
+      <div data-field-span="1">
+        <label>Gender</label>
+        <input class="radio" id="radio-1" name="rd" type="radio">
+        <label for="radio-1" class="radio-label">Male</label>
+
+          <input class="radio" id="radio-2" name="rd" type="radio">
+        <label for="radio-2" class="radio-label">Female</label>
+      </div>
+    </div>
+
+    <div data-row-span="2">
+      <div data-field-span="1">
+        <label>Simple select</label>
+        <select id="cmb_simple" class="simple">
+          <option value="AL">Alabama</option>
+          <option value="WY">Wyoming</option>
+        </select>
+      </div>
+
+      <div data-field-span="1">
+        <label>Multiple select</label>
+        <select id="cmb_multiple" class="multiple" multiple>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+          <option value="4">Four</option>
+          <option value="5">Five</option>
+        </select>
+      </div>
+    </div>
+
+  </fieldset>
+</form>
+```
 
 ## Screenshots
 
