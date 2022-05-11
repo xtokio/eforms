@@ -110,19 +110,19 @@ class App
 
         $('select.simple').each(function(){
             $(this).on('select2:opening', function (e) {
-                $('.select2-selection__arrow > svg').toggleClass('rotate');
+                $(this).next().find('.select2-selection__arrow > svg').toggleClass('rotate');
             });
             $(this).on('select2:closing', function (e) {
-                $('.select2-selection__arrow > svg').toggleClass('rotate');
+                $(this).next().find('.select2-selection__arrow > svg').toggleClass('rotate');
             });
         });
 
         $('select.multiple').each(function(){
             $(this).on('select2:opening', function (e) {
-                $('.select2-selection--multiple > svg').toggleClass('rotate');
+                $(this).next().find('.select2-selection--multiple > svg').toggleClass('rotate');
             });
             $(this).on('select2:closing', function (e) {
-                $('.select2-selection--multiple > svg').toggleClass('rotate');
+                $(this).next().find('.select2-selection--multiple > svg').toggleClass('rotate');
             });
         });
     }

@@ -1,22 +1,24 @@
-<% if forms.size > 0 %>
-<h3><%= form_status %> [<span style="color: #0c5df4"><%= forms.size %></span>]</h3>
-<table id="forms_table" class="styled-table">
-    <thead>
-        <tr>
-        <th>ID</th>
-        <th>Folio</th>
-        <th>Form</th>
-        <th>Status</th>
-        <th>User</th>
-        <th>Created at</th>
-        <th>Updated at</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-<% else %>
-<h3>No forms were found [<span style="color: #0c5df4">0</span>]</h3>
-<% end %>
+<div>
+  <% if forms.size > 0 %>
+  <h3><%= form_status %> [<span style="color: #0c5df4"><%= forms.size %></span>]</h3>
+  <table id="forms_table" class="styled-table">
+      <thead>
+          <tr>
+          <th>ID</th>
+          <th>Folio</th>
+          <th>Form</th>
+          <th>Status</th>
+          <th>User</th>
+          <th>Created at</th>
+          <th>Updated at</th>
+          </tr>
+      </thead>
+      <tbody></tbody>
+  </table>
+  <% else %>
+  <h3>No forms were found [<span style="color: #0c5df4">0</span>]</h3>
+  <% end %>
+</div>
 
 <script>
   <% if forms.size > 0 %>

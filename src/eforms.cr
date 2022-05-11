@@ -52,7 +52,7 @@ module Eforms
     end
 
     messages = [] of String
-    sockets = [] of HTTP::WebSocket
+    sockets  = [] of HTTP::WebSocket
 
     ws "/message" do |socket|
         sockets.push socket
