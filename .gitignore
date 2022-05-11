@@ -4,5 +4,6 @@
 /.shards/
 /db/eforms.db
 *.dwarf
+*.csv
 .editorconfig
 eforms

@@ -1,0 +1,50 @@
+<h3>Import > New</h3>
+<p><span style="color:red">* </span>CSV file only contains one column, the Form number (ex. phone number)</p>
+
+<label for="cmb_forms" style="display: block; margin-bottom: 5px;">Form</label>
+<select id="cmb_forms" class="simple">
+<% forms.each do |form|%>
+  <option value="<%= form.id %>"><%= form.type %></option>
+<% end %>
+</select>
+
+<div style="text-align: right;">
+    <button id="btn_upload" class="btn btn-primary" style="width: 120px;">Upload CSV</button>
+    <input id="btn_upload_file" type="file" data-id="18" style="display: none;">
+</div>
+<script>
+    $("#btn_upload").on("click",function(){
+      $("#btn_upload_file").click();
+    });
+    $("#btn_upload_file").change(function(){
+        let form_type_id = $("#cmb_forms").val();
+
+        $(this).simpleUpload("/upload/import/csv/"+form_type_id, {
+            allowedExts: ["csv"],
+
+            start: function(file){
+                //upload started
+                console.log("upload started");
+            },
+
+            progress: function(progress){
+                //received progress
+                console.log("upload progress: " + Math.round(progress) + "%");
+            },
+
+            success: async function(data){
+                //upload successful
+                console.log("upload successful!");
+                console.log(data);
+                App.show_success("Import was successful!");
+            },
+
+            error: function(error){
+                //upload failed
+                console.log("upload error: " + error.name + ": " + error.message);
+                App.show_error(error.message);
+            }
+
+        });
+    });
+</script>
