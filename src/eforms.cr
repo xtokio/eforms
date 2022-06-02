@@ -83,6 +83,30 @@ module Eforms
             status        = Controller::Status.all()
             forms         = Controller::Types.active()
             notifications = Controller::Notifications.get_by_for_user(user_name)
+
+            # Get total by status for dashboard chart.
+            status_total  = Controller::ViewForms.status_total()
+            status_labels = "[]"
+            status_labels_total = "[]"
+            if status_total.size > 0
+                labels = ""
+                totals = ""
+                status_total.each do |total|
+                    if labels == ""
+                        labels = labels + "'" + total["status"].to_s + "'"
+                    else
+                        labels = labels + "," + "'" + total["status"].to_s + "'"
+                    end
+
+                    if totals == ""
+                        totals = totals + total["total"].to_s
+                    else
+                        totals = totals + "," + total["total"].to_s
+                    end
+                end
+                status_labels = "["+labels+"]"
+                status_labels_total = "["+totals+"]"
+            end
             
             render "src/views/dashboard/index.ecr", "src/layouts/base.ecr"
         else
