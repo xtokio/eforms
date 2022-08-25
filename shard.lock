@@ -18,7 +18,7 @@ shards:
 
   kemal:
     git: https://github.com/kemalcr/kemal.git
-    version: 1.1.2+git.commit.1d54971efa41089a6821ee14bb14357af5cfb503
+    version: 1.1.2+git.commit.d53d2536202cd57e8e1fc64d67ba31741562b07e
 
   kemal-session:
     git: https://github.com/kemalcr/kemal-session.git
@@ -27,10 +27,6 @@ shards:
   radix:
     git: https://github.com/luislavena/radix.git
     version: 0.4.1
-
-  rucksack:
-    git: https://github.com/busyloop/rucksack.git
-    version: 2.0.0
 
   sqlite3:
     git: https://github.com/crystal-lang/crystal-sqlite3.git
