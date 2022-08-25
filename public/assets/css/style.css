@@ -1291,6 +1291,7 @@ label {
   font-size: 0.85rem;
   font-weight: 300;
   line-height: 1;
+  white-space: pre-line;
 
   margin-top: 0;
   margin-bottom: 1rem;
