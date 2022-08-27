@@ -20,14 +20,12 @@ module Controller
       type        = env.params.json["type"].as(String)
       description = env.params.json["description"].as(String)
       template    = env.params.json["template"].as(String)
-      addons      = env.params.json["addons"].as(String)
       user_id     = env.session.string("user_id")
             
       data_record = Model::Type.new
       data_record.type        = type
       data_record.description = description
       data_record.template    = template
-      data_record.addons      = addons
       data_record.user_id     = user_id.to_i
       data_record.active      = 1
       changeset = Model::ConnDB.insert(data_record)
@@ -43,14 +41,12 @@ module Controller
       description = env.params.json["description"].as(String)
       active      = env.params.json["active"].as(String)
       template    = env.params.json["template"].as(String)
-      addons      = env.params.json["addons"].as(String)
       user_id     = env.session.string("user_id")
 
       data_record = Model::ConnDB.get!(Model::Type, id)
       data_record.type        = type
       data_record.description = description
       data_record.template    = template
-      data_record.addons      = addons
       data_record.user_id     = user_id.to_i
       data_record.active      = active.to_i
       changeset = Model::ConnDB.update(data_record)

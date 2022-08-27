@@ -17,7 +17,7 @@
 
 <div style="text-align: right;">
     <button id="btn_show_preview" class="btn btn-primary" style="width: 120px;">Show preview</button> 
-    <button id="btn_update" class="btn btn-primary" data-id="<%= type[0].id %>" data-type="<%= type[0].type %>" data-description="<%= type[0].description %>" data-addons="<%= type[0].addons %>" style="width: 120px;">Update</button>
+    <button id="btn_update" class="btn btn-primary" data-id="<%= type[0].id %>" data-type="<%= type[0].type %>" data-description="<%= type[0].description %>" style="width: 120px;">Update</button>
 </div>
 <br>
 <div id="div_show_preview" style="position: relative;"></div>
@@ -39,8 +39,7 @@
     let description = $("#txt_description").val();
     let active      = $("#cmb_active").val();
     let template    = template_code_mirror.getValue();
-    let addons      = $(this).data("addons");
-    let params = {id,type,description,active,template,addons,addons};
+    let params = {id,type,description,active,template};
 
     let response = await App.post("/types/update",params).catch(message => App.show_error(message));
     let data = await response.json();

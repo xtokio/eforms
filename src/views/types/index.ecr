@@ -8,7 +8,6 @@
               <th>ID</th>
               <th>Type</th>
               <th>Description</th>
-              <th>Addons</th>
               <th>Active</th>
               <th>Created at</th>
               <th>Updated at</th>
@@ -21,7 +20,6 @@
               <td><%= row.id %></td>
               <td><%= row.type %></td>
               <td><%= row.description %></td>
-              <td><%= row.addons %></td>
               <td>
               <% if row.active == 1 %>
                 <div id="type_active_<%= row.id %>" class="animate__animated">On</div>

@@ -58,7 +58,6 @@ CREATE TABLE IF NOT EXISTS "types" (
 	"type"	TEXT NOT NULL DEFAULT '',
 	"description"	TEXT NOT NULL DEFAULT '',
 	"template"	TEXT NOT NULL DEFAULT '',
-	"addons"	TEXT NOT NULL DEFAULT '',
 	"active"	INTEGER NOT NULL DEFAULT 1,
 	"user_id"	INTEGER NOT NULL,
 	"created_at"	TEXT NOT NULL DEFAULT '',

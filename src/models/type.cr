@@ -6,7 +6,6 @@ module Model
             field :type, String
             field :description, String
             field :template, String
-            field :addons, String
             field :active, Int32
             field :user_id, Int32
         end

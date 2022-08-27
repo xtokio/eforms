@@ -31,8 +31,7 @@
     let type        = $("#txt_type").val();
     let description = $("#txt_description").val();
     let template    = template_code_mirror.getValue();
-    let addons      = "comments,attachments";
-    let params = {type,description,template,addons,addons};
+    let params = {type,description,template};
 
     let response = await App.post("/types/new",params).catch(message => App.show_error(message));
     let data = await response.json();
