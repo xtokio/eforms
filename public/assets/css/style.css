@@ -846,6 +846,7 @@ input {
   color: var(--body-color);
   transition: border 0.3s ease;
   height: 36px;
+  width: 100%;
   outline: none;
 }
 
@@ -1212,12 +1213,12 @@ nav.dropdown li {
 }
 
 nav.dropdown li a {
-    color: var(--body-color);
+    color: var(--theme-bg-color);;
     font-size: 13px;
     font-weight: 600;
 }
 nav.dropdown li a:hover {
-    color: var(--first-color);
+    color: var(--sub-color);
 }
 
 nav.dropdown li:hover,
@@ -1230,7 +1231,7 @@ nav.dropdown li:focus-within a {
 }
 
 nav.dropdown ul li ul {
-    background-color: #e1ebfb;
+    background-color: #0946B7;
     visibility: hidden;
     opacity: 0;
     min-width: 5rem;
@@ -1243,6 +1244,8 @@ nav.dropdown ul li ul {
     width: 100%;
     padding: 10px;
     z-index: 1;
+
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
 
 nav.dropdown ul li ul li {
