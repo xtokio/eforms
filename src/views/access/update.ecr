@@ -19,7 +19,7 @@
     let company    = $("#txt_company").val();
     let area       = $("#txt_area").val();
     let department = $("#txt_department").val();
-    let params = {id,company,area,department};
+    let params     = {id,company,area,department};
 
     let response = await App.post("/access/update",params).catch(message => App.show_error(message));
     let data = await response.json();
